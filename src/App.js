@@ -4,9 +4,12 @@ import { BrowserRouter as Router, Routes, Route ,Navigate} from 'react-router-do
 import Login from './components/Login';
 import Dashboard from './components/Dashboard';
 import PrivateRoute from './routes/PrivateRoute';
+import Header from './components/Header';
+import Footer from './components/Footer';
 
 const App = () => {
     return (
+        <><Header/>
         <Router>
             <Routes>
                 <Route path="/login" element={<Login />} />
@@ -18,6 +21,8 @@ const App = () => {
                 <Route path="/" element={<Navigate to="/login" replace />} />
             </Routes>
         </Router>
+        <Footer/>
+        </>
     );
 };
 

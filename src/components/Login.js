@@ -1,15 +1,18 @@
 // src/components/Login.js
 import React, { useState } from 'react';
-import { Box, TextField, Button, Typography, MenuItem, Select, FormControl, InputLabel, Checkbox, FormControlLabel, Link } from '@mui/material';
+import { Container ,Box, TextField, Button, Typography, MenuItem, Select, FormControl, InputLabel, Checkbox, FormControlLabel, Link } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { useNavigate } from 'react-router-dom';
 import authStore from '../stores/AuthStore';
-
+import Header from './Header';  // Import Header
+import Footer from './Footer';  // Import Footer
+import bgImage from '../assets/login.jpg'
 
 const Background = styled(Box)({
   width: '100%',
   height: '100vh',
-  backgroundImage: 'url("../../assets/login.jpg")',
+  // eslint-disable-next-line no-template-curly-in-string
+  backgroundImage: 'url(${bgImage})',
   backgroundSize: 'cover',
   backgroundPosition: 'center',
   display: 'flex',
@@ -42,7 +45,9 @@ const Login = () => {
 
   return (
     <Background>
-      <LoginBox>
+      <Container component="main"  maxWidth="xs">
+      
+      <LoginBox  sx={{ marginTop: '264px' }}>
         <Typography variant="h5" component="h1" marginBottom={2}>
           Welcome to Goldman.com. Sign in to continue.
         </Typography>
@@ -101,6 +106,8 @@ const Login = () => {
           </Link>
         </Typography>
       </LoginBox>
+     
+        </Container>
     </Background>
   );
 };

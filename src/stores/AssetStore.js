@@ -8,7 +8,7 @@ class AssetStore {
     ]; // default state
 
     constructor() {
-        makeAutoObservable(this,{assets: observable});
+        makeAutoObservable(this,{assets: observable}); 
     }
 
     updateAsset(index, value) {

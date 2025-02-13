@@ -5,6 +5,7 @@ import assetStore from '../stores/AssetStore';
 import AssetAllocationChart from './AssetAllocationChart';
 import LogoutButton from './LogoutButton';
 
+
 const Dashboard = observer(() => {
   const cash = assetStore.assets.find(asset => asset.name === 'Cash, Deposits & Money Market Funds')?.value || 0;
   const fixedIncome = assetStore.assets.find(asset => asset.name === 'Fixed Income')?.value || 0;
@@ -12,6 +13,7 @@ const Dashboard = observer(() => {
 
   return (
     <Container maxWidth="md" style={{ marginTop: '2rem' }}>
+      
       <Typography variant="h4" component="h1" gutterBottom align="center">
         Asset Allocation
       </Typography>
@@ -37,6 +39,7 @@ const Dashboard = observer(() => {
       <Box display="flex" justifyContent="center" mt={2}>
         <LogoutButton />
       </Box>
+     
     </Container>
   );
 });
