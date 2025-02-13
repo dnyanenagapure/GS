@@ -1,0 +1,8 @@
+{
+    "assets": [
+      { "id": 1, "type": "Cash, Deposits & Money Market Funds", "value": 84026 },
+      { "id": 2, "type": "Fixed Income", "value": 199738 },
+      { "id": 3, "type": "Public Equity", "value": 183116 }
+    ]
+  }
+  
