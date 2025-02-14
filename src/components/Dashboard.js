@@ -4,6 +4,7 @@ import { Container, Typography, Paper, Grid, Box } from '@mui/material';
 import assetStore from '../stores/AssetStore';
 import AssetAllocationChart from './AssetAllocationChart';
 import LogoutButton from './LogoutButton';
+import MarketChart from './MarketChart'
 
 
 const Dashboard = observer(() => {
@@ -39,7 +40,9 @@ const Dashboard = observer(() => {
       <Box display="flex" justifyContent="center" mt={2}>
         <LogoutButton />
       </Box>
-     
+     <Box>
+      <MarketChart/>
+     </Box>
     </Container>
   );
 });
