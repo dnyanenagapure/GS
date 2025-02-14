@@ -18,7 +18,7 @@ const AssetAllocationChart = observer(() => {
         const width = 360;
         const height = 360;
         const radius = Math.min(width, height) / 2;
-        const legendHeight = 100; 
+        const legendHeight = 80; 
     
         d3.select(ref.current).selectAll("*").remove(); 
     
@@ -31,7 +31,7 @@ const AssetAllocationChart = observer(() => {
     
         const color = d3.scaleOrdinal()
             .domain(data.map(d => d.name))
-            .range(["#66c2a5", "#fc8d62", "#8da0cb"]);
+            .range(["#D8DBF0", "#61B75E", "#3B98E2"]);
     
         const pie = d3.pie()
             .value(d => d.value)
@@ -66,8 +66,9 @@ const AssetAllocationChart = observer(() => {
     
             legendRow.append("rect")
                 .attr("x", width / 2 - 18)
-                .attr("width", 18)
-                .attr("height", 18)
+                .attr("y", (d, i) => 20 * i + 5)
+                .attr("width", 10)
+                .attr("height", 10)
                 .style("fill", color(d));
     
             legendRow.append("text")
