@@ -4,7 +4,6 @@ import { Container, Typography, Paper, Grid, Box } from '@mui/material';
 import assetStore from '../stores/AssetStore';
 import AssetAllocationChart from './AssetAllocationChart';
 import LogoutButton from './LogoutButton';
-import Headers from './Headers';
 
 const Dashboard = observer(() => {
   const cash = assetStore.assets.find(asset => asset.name === 'Cash, Deposits & Money Market Funds')?.value || 0;
@@ -13,7 +12,6 @@ const Dashboard = observer(() => {
 
   return (
     <>
-      <Headers/>
       <Container maxWidth="md" style={{ marginTop: '2rem' }}>
         <Typography variant="h4" component="h1" gutterBottom align="center">
           Asset Allocation
