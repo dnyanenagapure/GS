@@ -10,7 +10,7 @@ import bgImage from '../assets/login.jpg'
 
 const Background = styled(Box)({
   width: '100%',
-  height: '100vh',
+  height: '120vh',
   // eslint-disable-next-line no-template-curly-in-string
   backgroundImage: 'url(${bgImage})',
   backgroundSize: 'cover',
@@ -47,7 +47,7 @@ const Login = () => {
     <Background>
       <Container component="main"  maxWidth="xs">
       
-      <LoginBox  sx={{ marginTop: '264px' }}>
+      <LoginBox  sx={{ marginTop: '100px' }}>
         <Typography variant="h5" component="h1" marginBottom={2}>
           Welcome to Goldman.com. Sign in to continue.
         </Typography>
