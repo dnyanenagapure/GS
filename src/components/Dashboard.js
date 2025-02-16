@@ -4,6 +4,7 @@ import { Container, Typography, Paper, Grid, Box } from '@mui/material';
 import assetStore from '../stores/AssetStore';
 import AssetAllocationChart from './AssetAllocationChart';
 import LogoutButton from './LogoutButton';
+import MarketChart from './MarketChart';
 
 const Dashboard = observer(() => {
   const cash = assetStore.assets.find(asset => asset.name === 'Cash, Deposits & Money Market Funds')?.value || 0;
@@ -18,6 +19,7 @@ const Dashboard = observer(() => {
         </Typography>
         <Box display="flex" justifyContent="center" mb={8}>
           <AssetAllocationChart />
+          <MarketChart/>
         </Box>
         <Paper elevation={3} style={{ padding: '20px' }}>
           <Grid container spacing={3} justifyContent="center">
