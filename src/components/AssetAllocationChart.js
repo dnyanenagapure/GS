@@ -3,31 +3,31 @@ import React, { useEffect, useRef } from 'react';
 import * as d3 from 'd3';
 import { observer } from 'mobx-react';
 import assetStore from '../stores/AssetStore';
+import { Container, Paper } from '@mui/material';
 
 const AssetAllocationChart = observer(() => {
     const ref = useRef();
 
     useEffect(() => {
-        if (assetStore.assets.length) {//{assetStore} this is coming from mobx store
+        if (assetStore.assets.length) {
             drawChart();
         }
     }, [assetStore.assets]); 
 
     const drawChart = () => {
         const data = assetStore.assets;
-        const width = 360;
+        const width = 800;  // Increased width to accommodate the legend
         const height = 360;
         const radius = Math.min(width, height) / 2;
-        const legendHeight = 80; 
     
         d3.select(ref.current).selectAll("*").remove(); 
     
         const svg = d3.select(ref.current)
             .append("svg")
             .attr("width", width)
-            .attr("height", height + legendHeight)  
+            .attr("height", height)
             .append("g")
-            .attr("transform", `translate(${width / 2}, ${height / 2})`);
+            .attr("transform", `translate(${radius - 50}, ${height / 2})`); // Move chart to left
     
         const color = d3.scaleOrdinal()
             .domain(data.map(d => d.name))
@@ -38,8 +38,8 @@ const AssetAllocationChart = observer(() => {
             .sort(null);
     
         const arc = d3.arc()
-            .innerRadius(100)
-            .outerRadius(radius);
+            .innerRadius(80)
+            .outerRadius(radius - 50);
     
         const arcs = svg.selectAll(".arc")
             .data(pie(data))
@@ -53,35 +53,39 @@ const AssetAllocationChart = observer(() => {
         arcs.append("text")
             .attr("transform", d => `translate(${arc.centroid(d)})`)
             .attr("text-anchor", "middle")
+            .style("font-size", "12px")
             .text(d => `${((d.data.value / d3.sum(data, d => d.value)) * 100).toFixed(1)}%`);
     
-        //  legend setup to place below the chart
-        const legend = svg.append("g")
-            .attr("transform", `translate(${-width / 1.5}, ${radius + 20})`); // Move legend below the chart
+        // Legend positioned to the right side
+        const legend = d3.select(ref.current).select("svg")
+            .append("g")
+            .attr("transform", `translate(${width - 130}, ${height / 3})`); // Move legend to right
     
         color.domain().forEach((d, i) => {
             const legendRow = legend.append("g")
-                .attr("transform", `translate(0, ${i * 20})`) 
-                .attr("style", 'font-size:12px;margin-left:-100px');
+                .attr("transform", `translate(0, ${i * 25})`);
     
             legendRow.append("rect")
-                .attr("x", width / 2 - 18)
-                .attr("y", (d, i) => 20 * i + 5)
-                .attr("width", 10)
-                .attr("height", 10)
-                .style("fill", color(d));
+                .attr("width", 12)
+                .attr("height", 12)
+                .attr("fill", color(d));
     
             legendRow.append("text")
-                .attr("x", width / 2)
-                .attr("y", 9)
-                .attr("dy", ".35em")
+                .attr("x", 20)
+                .attr("y", 10)
+                .style("font-size", "12px")
                 .style("text-anchor", "start")
                 .text(d);
         });
     };
     
-    return <div ref={ref}></div>;
-    
+    return (
+        <Paper elevation={3}>
+            <Container>
+                <div ref={ref}></div>
+            </Container>
+        </Paper>
+    );
 });
 
 export default AssetAllocationChart;

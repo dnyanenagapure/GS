@@ -17,9 +17,15 @@ const Dashboard = observer(() => {
         <Typography variant="h4" component="h1" gutterBottom align="center">
           Asset Allocation
         </Typography>
+        <Box display="flex" justifyContent="left" mb={8}>
+          <Grid item xs={12} sm={8}>
+            <AssetAllocationChart />
+          </Grid>
+          <Grid item xs={12} sm={4}>
+          </Grid>
+        </Box>
         <Box display="flex" justifyContent="center" mb={8}>
-          <AssetAllocationChart />
-          <MarketChart/>
+            <MarketChart/>
         </Box>
         <Paper elevation={3} style={{ padding: '20px' }}>
           <Grid container spacing={3} justifyContent="center">
